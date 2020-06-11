@@ -15,7 +15,7 @@ buildscript {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'dv.trung.glux:glux-font:0.1.0'
+    implementation 'dv.trung.glux:glux-font:0.1.1'
     implementation 'com.squareup:javapoet:1.11.1'
 }
 
@@ -24,7 +24,7 @@ publish {
     repoName = 'glux'
     groupId = 'dv.trung.glux'
     artifactId = 'glux-font-compiler'
-    publishVersion = '0.1.0'
+    publishVersion = '0.1.1'
     desc = 'Initial glux font compiler'
     licences = ['Apache-2.0']
 }
