@@ -83,8 +83,8 @@ public class FontsProcessor extends AbstractProcessor {
             if (fontElement == null) {
                 return false;
             }
-            if (fontElement.applicationId().isEmpty()) {
-                messager.printMessage(Diagnostic.Kind.ERROR, "Please provide you applicationId");
+            if (fontElement.packageName().isEmpty()) {
+                messager.printMessage(Diagnostic.Kind.ERROR, "Please provide you packageName");
                 return false;
             }
             File fonts = null;
@@ -154,7 +154,7 @@ public class FontsProcessor extends AbstractProcessor {
 
     @NotNull
     private String getApplicationPackageName(Font element) {
-        return element.applicationId();
+        return element.packageName();
     }
 
     private File findFontsFolder() throws Exception {
