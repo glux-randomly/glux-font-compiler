@@ -83,6 +83,10 @@ public class FontsProcessor extends AbstractProcessor {
             if (fontElement == null) {
                 return false;
             }
+            if (fontElement.applicationId().isEmpty()) {
+                messager.printMessage(Diagnostic.Kind.ERROR, "Please provide you applicationId");
+                return false;
+            }
             File fonts = null;
             try {
                 fonts = findFontsFolder();
@@ -98,7 +102,7 @@ public class FontsProcessor extends AbstractProcessor {
                     .addModifiers(Modifier.PUBLIC, Modifier.FINAL);
             File[] files = Objects.requireNonNull(fonts.listFiles());
 
-            String packageName = getApplicationPackageName(element);
+            String packageName = getApplicationPackageName(fontElement);
             ClassName R = ClassName.get(packageName, "R", new String[0]);
 
             for (File file : files) {
@@ -149,13 +153,8 @@ public class FontsProcessor extends AbstractProcessor {
     }
 
     @NotNull
-    private String getApplicationPackageName(Element element) {
-        Element enclosing = element;
-        while (enclosing.getKind() != ElementKind.PACKAGE) {
-            enclosing = enclosing.getEnclosingElement();
-        }
-        PackageElement packageElement = (PackageElement) enclosing;
-        return packageElement.getQualifiedName().toString();
+    private String getApplicationPackageName(Font element) {
+        return element.applicationId();
     }
 
     private File findFontsFolder() throws Exception {

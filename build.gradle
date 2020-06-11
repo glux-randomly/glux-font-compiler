@@ -15,7 +15,7 @@ buildscript {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'dv.trung.glux:glux-font:0.0.4'
+    implementation 'dv.trung.glux:glux-font:0.1.0'
     implementation 'com.squareup:javapoet:1.11.1'
 }
 
