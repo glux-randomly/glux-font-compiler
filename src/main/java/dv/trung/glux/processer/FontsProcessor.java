@@ -141,7 +141,7 @@ public class FontsProcessor extends AbstractProcessor {
             fontWrapper.addStatement("return $T.wrap(context)", ViewPumpContextWrapper);
             fontClass.addMethod(fontWrapper.build());
             try {
-                writeFontUtils(fontClass);
+                writeFontUtils(packageName, fontClass);
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
@@ -163,8 +163,8 @@ public class FontsProcessor extends AbstractProcessor {
         return new File(projectRoot.getAbsolutePath() + "/src/main/assets/fonts");
     }
 
-    private void writeFontUtils(TypeSpec.Builder fontClass) throws IOException {
-        JavaFile.builder("dv.trung.glux", fontClass.build()).build().writeTo(filer);
+    private void writeFontUtils(java.lang.String packageName, TypeSpec.Builder fontClass) throws IOException {
+        JavaFile.builder(packageName + ".font", fontClass.build()).build().writeTo(filer);
     }
 
     private MethodSpec.Builder getMethodFontType() {
